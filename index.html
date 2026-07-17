@@ -435,8 +435,9 @@
       <p style="color:var(--cream-soft);">Напишите мне — расскажите свой запрос, и мы подберём формат работы и удобное время.</p>
       <div class="contact-links">
         <a href="https://t.me/natasha_S_H" target="_blank" rel="noopener" class="btn-primary">Написать</a>
-        <a href="mailto:ya.zimina87@yandex.ru" class="btn-ghost">Написать на почту</a>
+        <a href="mailto:ya.zimina87@yandex.ru" class="btn-ghost" onclick="copyEmail(event)">Написать на почту</a>
       </div>
+      <p style="color:var(--cream-soft); margin-top:14px; font-size:14px;">Или на почту: <a href="mailto:ya.zimina87@yandex.ru" onclick="copyEmail(event)" style="color:var(--gold-bright); text-decoration:none;">ya.zimina87@yandex.ru</a> <span style="opacity:.65;">— нажмите, адрес скопируется</span></p>
     </div>
   </div>
 </section>
@@ -446,17 +447,37 @@
   <div class="wrap">
     <div class="fm">с любовью, Magic Shelest</div>
     <div>Наталья Шелест · Психокинетика · Ментальная магия · Эзотерика</div>
-    <div style="margin-top:10px;"><a href="https://t.me/natasha_S_H" target="_blank" rel="noopener" style="color:var(--gold-bright);">Написать</a> · <a href="mailto:ya.zimina87@yandex.ru" style="color:var(--gold-bright);">Почта</a> · <a href="https://t.me/Prognoz_Li_veD" target="_blank" rel="noopener" style="color:var(--gold-bright);">Канал</a></div>
+    <div style="margin-top:10px;"><a href="https://t.me/natasha_S_H" target="_blank" rel="noopener" style="color:var(--gold-bright);">Написать</a> · <a href="mailto:ya.zimina87@yandex.ru" onclick="copyEmail(event)" style="color:var(--gold-bright);">Почта</a> · <a href="https://t.me/Prognoz_Li_veD" target="_blank" rel="noopener" style="color:var(--gold-bright);">Канал</a></div>
     <p class="disclaimer">Услуги носят эзотерический и консультационный характер, предназначены для лиц старше 18 лет и не являются медицинской, психологической, психотерапевтической или юридической помощью и не заменяют её. Результаты индивидуальны.</p>
     <p class="disclaimer">© <span id="year"></span> Наталья Шелест. Все права защищены.</p>
   </div>
 </footer>
+
+<style>
+  #toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); background:#2a1c3d; color:#F3E9D6; border:1px solid #D9AE63; padding:13px 22px; border-radius:30px; font-size:14px; box-shadow:0 12px 34px rgba(0,0,0,.4); opacity:0; pointer-events:none; transition:.25s ease; z-index:9999; max-width:90vw; text-align:center;}
+  #toast.show{opacity:1; transform:translate(-50%,0);}
+</style>
 
 <script>
   function toggleAcc(btn){ btn.parentElement.classList.toggle('open'); }
   function showTab(name){
     document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('active', t.dataset.tab===name); });
     document.querySelectorAll('.tabpanel').forEach(function(p){ p.classList.toggle('active', p.dataset.panel===name); });
+  }
+  function copyEmail(e){
+    var email = 'ya.zimina87@yandex.ru';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).catch(function(){});
+    }
+    showToast('Почта скопирована: ' + email);
+  }
+  function showToast(msg){
+    var t = document.getElementById('toast');
+    if (!t) { t = document.createElement('div'); t.id = 'toast'; document.body.appendChild(t); }
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2600);
   }
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
