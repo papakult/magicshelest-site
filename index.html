@@ -185,6 +185,12 @@
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--line); padding:40px 0 60px; text-align:center; color:var(--cream-soft); font-size:13px;}
   footer .fm{font-family:var(--f-display); font-style:italic; font-size:20px; color:var(--gold-bright); margin-bottom:10px;}
+  .creator-credit{display:inline-flex;align-items:center;gap:9px;margin-top:18px;color:var(--cream-soft);font-family:var(--f-body);font-size:11px;font-weight:600;letter-spacing:.18em;text-decoration:none;text-transform:uppercase;transition:color .25s ease;}
+  .creator-credit::before,.creator-credit::after{content:"✦";color:var(--gold);font-size:9px;opacity:.72;transition:transform .35s ease,opacity .25s ease;}
+  .creator-credit strong{color:var(--gold-bright);font-weight:700;}
+  .creator-credit:hover,.creator-credit:focus-visible{color:var(--cream);}
+  .creator-credit:hover::before,.creator-credit:hover::after{opacity:1;transform:rotate(45deg) scale(1.12);}
+  .creator-credit:focus-visible{outline:1px solid var(--gold);outline-offset:7px;border-radius:2px;}
   .disclaimer{max-width:720px; margin:18px auto 0; font-size:12px; opacity:.7; line-height:1.5;}
   .accent-line{font-family:var(--f-accent); color:var(--gold-bright); font-size:19px; text-align:center; margin-top:18px;}
 </style>
@@ -524,6 +530,7 @@
     <div style="margin-top:10px;"><a href="https://t.me/natasha_S_H" target="_blank" rel="noopener" style="color:var(--gold-bright);">Написать</a> · <a href="mailto:ya.zimina87@yandex.ru" onclick="copyEmail(event)" style="color:var(--gold-bright);">Почта</a> · <a href="https://t.me/Prognoz_Li_veD" target="_blank" rel="noopener" style="color:var(--gold-bright);">Канал</a></div>
     <p class="disclaimer">Услуги носят эзотерический и консультационный характер, предназначены для лиц старше 18 лет и не являются медицинской, психологической, психотерапевтической или юридической помощью и не заменяют её. Результаты индивидуальны.</p>
     <p class="disclaimer">© <span id="year"></span> Наталья Шелест. Все права защищены.</p>
+    <a class="creator-credit" href="https://007-a.ru/?utm_source=magicshelest.ru&amp;utm_medium=footer&amp;utm_campaign=signature" target="_blank" rel="noopener" aria-label="Сайт создан 007—A">Сайт создан <strong>007—A</strong> <span aria-hidden="true">↗</span></a>
   </div>
 </footer>
 
