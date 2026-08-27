@@ -70,6 +70,18 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112019946', 'ym');
+
+   ym(112019946, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/112019946" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="grain"></div>
@@ -129,5 +141,18 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
   <a href="../privacy.html">Конфиденциальность</a>
 </div></footer>
 <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+<script>
+(function(){
+  function goal(n){ if (typeof ym === 'function') ym(112019946, 'reachGoal', n); }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a'); if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (a.classList.contains('book'))        goal('zapis_knopka');
+    else if (h.indexOf('t.me/natasha') > -1) goal('contact_telegram');
+    else if (h.indexOf('t.me/Prognoz') > -1) goal('contact_channel');
+    else if (h.indexOf('mailto:') === 0)     goal('contact_email');
+  }, true);
+})();
+</script>
 </body>
 </html>
