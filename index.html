@@ -90,5 +90,35 @@
     const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');let stars=[];function resize(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);stars=Array.from({length:Math.min(100,Math.floor(innerWidth/12))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.2+.2,a:Math.random()*.5+.15,s:Math.random()*.004+.001}))}function draw(t){ctx.clearRect(0,0,innerWidth,innerHeight);stars.forEach(p=>{ctx.beginPath();ctx.fillStyle=`rgba(228,203,157,${p.a*(.65+.35*Math.sin(t*p.s))})`;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()});requestAnimationFrame(draw)}addEventListener('resize',resize);resize();requestAnimationFrame(draw);
     let audioCtx,master;const sound=document.getElementById('sound');function ambience(){audioCtx=new(window.AudioContext||window.webkitAudioContext)();master=audioCtx.createGain();master.gain.value=.035;master.connect(audioCtx.destination);[110,164.81,220].forEach((f,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),l=audioCtx.createBiquadFilter();o.type=i===1?'sine':'triangle';o.frequency.value=f;g.gain.value=[.25,.12,.07][i];l.type='lowpass';l.frequency.value=420;o.connect(l).connect(g).connect(master);o.start()})}sound.addEventListener('click',()=>{if(!audioCtx){ambience();sound.classList.add('on');sound.setAttribute('aria-pressed','true')}else if(audioCtx.state==='running'){audioCtx.suspend();sound.classList.remove('on');sound.setAttribute('aria-pressed','false')}else{audioCtx.resume();sound.classList.add('on');sound.setAttribute('aria-pressed','true')}});
   </script>
+
+<style>
+/* ===== HERO PATCH: вертикальное видео 752x1280 ===== */
+
+/* Видео колонной по центру — лицо целиком, ничего не режется */
+.hero .hero-video{left:50% !important;transform:translateX(-50%);width:calc(100svh * 0.5875) !important;max-width:100%;object-fit:cover !important;object-position:center top !important;}
+
+/* Края колонны растворяются в фон, слева тень под текст */
+.hero .hero-bg{background:linear-gradient(90deg,rgba(12,7,17,.96) 0%,rgba(12,7,17,.88) 20%,rgba(12,7,17,.40) 34%,rgba(12,7,17,0) 46%,rgba(12,7,17,0) 54%,rgba(12,7,17,.55) 70%,rgba(12,7,17,.96) 86%,rgba(12,7,17,1) 100%),linear-gradient(180deg,rgba(12,7,17,.75) 0%,transparent 26%,transparent 70%,rgba(12,7,17,.92) 100%) !important;}
+
+/* Кнопки: плавность 0.4s, золотое свечение, сдвиг стрелки */
+.hero .actions a{transition:all .4s cubic-bezier(.25,1,.5,1) !important;}
+.hero .actions .primary{animation:heroPulse 3.4s ease-in-out infinite;}
+.hero .actions .primary:hover{transform:scale(1.03);box-shadow:0 0 28px rgba(212,175,55,.45),0 10px 34px -12px rgba(212,175,55,.6);}
+.hero .actions .primary::after{content:'\2192';display:inline-block;margin-left:10px;transition:transform .4s cubic-bezier(.25,1,.5,1);}
+.hero .actions .primary:hover::after{transform:translateX(5px);}
+@keyframes heroPulse{0%,100%{box-shadow:0 0 12px rgba(212,175,55,.18);}50%{box-shadow:0 0 22px rgba(212,175,55,.34);}}
+.hero .actions .ghost{border:1px solid rgba(212,175,55,.45) !important;}
+.hero .actions .ghost:hover{background:rgba(212,175,55,.12) !important;border-color:rgba(212,175,55,.8) !important;}
+
+/* Логотип и меню */
+nav a{transition:all .4s cubic-bezier(.25,1,.5,1) !important;}
+nav a:hover{letter-spacing:.06em;color:#fff !important;}
+
+/* Телефоны: вертикаль во весь экран, лицо в верхней зоне */
+@media (max-width:800px){
+.hero .hero-video{left:0 !important;transform:none;width:100% !important;object-position:center 18% !important;}
+.hero .hero-bg{background:linear-gradient(180deg,rgba(12,7,17,.80) 0%,rgba(12,7,17,.35) 26%,rgba(12,7,17,.55) 55%,rgba(12,7,17,.95) 100%) !important;}
+}
+</style>
 </body>
 </html>
