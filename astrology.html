@@ -83,6 +83,27 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 }
 @media (prefers-reduced-motion:reduce){.block-media{display:none}}
 
+
+/* аккордеон разделов */
+.acc{border-top:1px solid var(--line)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;padding:20px 34px 20px 0;position:relative;font-family:var(--serif);font-size:clamp(19px,2.2vw,23px);font-weight:500;color:var(--gold2);letter-spacing:.01em;transition:color .4s cubic-bezier(.25,1,.5,1)}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;margin-top:-6px;border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg);transition:transform .4s cubic-bezier(.25,1,.5,1)}
+.acc details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
+.acc summary:hover{color:#fff}
+.acc .inner{padding:0 0 30px;animation:accIn .5s cubic-bezier(.25,1,.5,1)}
+@keyframes accIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.acc .inner p{color:#d6cad6;font-size:15px;margin:0 0 14px}
+.acc-media{position:relative;width:100%;aspect-ratio:16/9;margin:0 0 22px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:rgba(12,7,17,.6)}
+.acc-media video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 1s ease;filter:saturate(.85) contrast(1.05)}
+.acc-media video.ready{opacity:1}
+.acc-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(12,7,17,.55),transparent 42%)}
+.acc-media.empty{display:none}
+.sub-q{color:#d6cad6;margin:0 0 6px}
+@media (max-width:768px){.acc summary{font-size:18px;padding:17px 30px 17px 0}.acc-media{margin-bottom:18px;border-radius:8px}}
+@media (prefers-reduced-motion:reduce){.acc .inner{animation:none}}
+
 /* цена и запись внутри блока направления */
 .price{font-family:var(--serif);font-size:clamp(24px,3vw,32px);color:var(--gold2);margin:26px 0 4px;letter-spacing:.02em}
 .price small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
@@ -108,12 +129,11 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 
 <main class="body"><div class="wrap">
 
-  <section class="block media-block">
-    <video class="block-media" muted loop playsinline preload="none" data-src="assets/video/oracle-loop.mp4"></video>
-    <div class="block-veil"></div>
-    <span class="num">01 · СОЛЯРНЫЙ ПРОГНОЗ</span>
-    <h2>Солярный прогноз</h2>
-    <p class="sub-q">Что включает в себя солярный прогноз:</p>
+  <section class="block">
+    <span class="num">01 · НАПРАВЛЕНИЕ</span>
+    <h2>Что можно посмотреть</h2>
+    <p class="intro-lead">Три формата разбора. Нажмите на нужный, чтобы раскрыть подробности и стоимость.</p>
+    <div class="acc"><details><summary>Солярный прогноз</summary><div class="inner"><div class="acc-media"><video muted loop playsinline preload="none" data-src="assets/video/oracle-loop.mp4"></video></div><p class="sub-q">Что включает в себя солярный прогноз:</p>
     <ul class="list">
       <li>Общие тенденции — важные события и изменения, которые могут произойти в течение года</li>
       <li>Основные сферы жизни, на которые стоит обратить внимание: работа, семья, путешествия</li>
@@ -121,15 +141,7 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
       <li>Рекомендации — как лучше использовать энергии года для достижения результатов, включая компенсаторные действия</li>
     </ul>
     <div class="price">7000 ₽<small>Солярный прогноз на год</small></div>
-    <a class="book" href="https://t.me/natasha_S_H" target="_blank" rel="noopener">Записаться</a>
-  </section>
-
-  <section class="block media-block">
-    <video class="block-media" muted loop playsinline preload="none" data-src="assets/video/mirrors-loop.mp4"></video>
-    <div class="block-veil"></div>
-    <span class="num">02 · КАРМИЧЕСКИЕ УЗЛЫ</span>
-    <h2>Кармические узлы с партнёром</h2>
-    <p>Понятие из эзотерики, означающее сильную, часто болезненную связь между двумя людьми. Такая связь:</p>
+    <a class="book" href="https://t.me/natasha_S_H" target="_blank" rel="noopener">Записаться</a></div></details><details><summary>Кармические узлы с партнёром</summary><div class="inner"><div class="acc-media"><video muted loop playsinline preload="none" data-src="assets/video/mirrors-loop.mp4"></video></div><p>Понятие из эзотерики, означающее сильную, часто болезненную связь между двумя людьми. Такая связь:</p>
     <ul class="list">
       <li>Ощущается как уже знакомая — будто вы встретились раньше, хотя познакомились недавно</li>
       <li>Притягивает и отталкивает одновременно: сильное влечение сочетается с конфликтами, недопониманием и драмой</li>
@@ -144,20 +156,12 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
     </ul>
     <div class="price">1800 ₽<small>Просмотр одной пары</small></div>
     <a class="book" href="https://t.me/natasha_S_H" target="_blank" rel="noopener">Записаться</a>
-    <p class="note">Для просмотра нужны данные рождения — ваши и вашего партнёра.</p>
-  </section>
-
-  <section class="block media-block">
-    <video class="block-media" muted loop playsinline preload="none" data-src="assets/video/fate-matrix-desktop.mp4"></video>
-    <div class="block-veil"></div>
-    <span class="num">03 · АСТРОКАРТЫ</span>
-    <h2>Астрокарты</h2>
-    <p>Астрокарта — это карта мира, на которую наносят линии по натальной карте человека. В разных точках планеты по-разному «включаются» стороны личности и судьбы: где-то легче даётся любовь, где-то карьера, а где-то, наоборот, накапливается напряжение и трудности.</p>
+    <p class="note">Для просмотра нужны данные рождения — ваши и вашего партнёра.</p></div></details><details><summary>Астрокарты</summary><div class="inner"><div class="acc-media"><video muted loop playsinline preload="none" data-src="assets/video/fate-matrix-desktop.mp4"></video></div><p>Астрокарта — это карта мира, на которую наносят линии по натальной карте человека. В разных точках планеты по-разному «включаются» стороны личности и судьбы: где-то легче даётся любовь, где-то карьера, а где-то, наоборот, накапливается напряжение и трудности.</p>
     <p>Место постоянного проживания или путешествия само по себе может усиливать одни качества человека и приглушать другие. Поэтому один и тот же человек в одном городе чувствует лёгкость и удачу, а в другом — постоянные препятствия, хотя внешне ничего не изменилось.</p>
     <p>Этим объясняют, почему переезд иногда ощущается как попадание в своё место, где всё складывается само собой. А иногда, наоборот, место словно выжимает человека, и там тяжело находиться долго.</p>
     <p>На практике метод используют так: смотрят на карту, ищут зоны, которые совпадают с городом или регионом, где человек хочет жить или куда собирается, и по ним определяют, чего ждать от этого места — поддержки или сложностей.</p>
     <div class="price">1600 ₽<small>Разбор одного города</small></div>
-    <a class="book" href="https://t.me/natasha_S_H" target="_blank" rel="noopener">Записаться</a>
+    <a class="book" href="https://t.me/natasha_S_H" target="_blank" rel="noopener">Записаться</a></div></details></div>
   </section>
 
 </div></main>
@@ -173,7 +177,7 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 
 <section class="others"><div class="wrap">
   <span class="num">ДРУГИЕ НАПРАВЛЕНИЯ</span>
-  <div class="olist"><a href="index.html#methods"><b>Эзотерика</b><span>Очищение · денежный канал · линии вероятности</span></a><a href="index.html#theurgy"><b>Персональные теургии божествам</b><span>Лилит · Мара · Афродита · Анубис · Велес</span></a></div>
+  <div class="olist"><a href="index.html#methods"><b>Эзотерика</b><span>Очищение · денежный канал · линии вероятности</span></a><a href="teurgii.html"><b>Персональные теургии божествам</b><span>Лилит · Мара · Афродита · Анубис · Велес</span></a></div>
 </div></section>
 
 <footer class="footer"><div class="wrap">
@@ -181,20 +185,19 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
   <a href="privacy.html">Конфиденциальность</a>
 </div></footer>
 <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
 <script>
 (function(){
-  var vids = document.querySelectorAll('.block-media');
-  if (!('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      var v = e.target;
-      if (e.isIntersecting){
-        if (!v.src) { v.src = v.dataset.src; }
-        v.play().then(function(){ v.classList.add('ready'); }).catch(function(){});
-      } else { v.pause(); }
+  document.querySelectorAll('.acc details').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      var box=d.querySelector('.acc-media'); if(!box) return;
+      var v=box.querySelector('video');
+      if(d.open){
+        if(!v.src){ v.addEventListener('error',function(){box.classList.add('empty')},{once:true}); v.src=v.dataset.src; }
+        v.play().then(function(){v.classList.add('ready')}).catch(function(){v.classList.add('ready')});
+      } else v.pause();
     });
-  }, {threshold: 0.2});
-  vids.forEach(function(v){ io.observe(v); });
+  });
 })();
 </script>
 </body>
