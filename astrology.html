@@ -193,7 +193,7 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
       var box=d.querySelector('.acc-media'); if(!box) return;
       var v=box.querySelector('video');
       if(d.open){
-        if(!v.src){ v.addEventListener('error',function(){box.classList.add('empty')},{once:true}); v.src=v.dataset.src; }
+        if(!v.src){ v.src=v.dataset.src; }
         v.play().then(function(){v.classList.add('ready')}).catch(function(){v.classList.add('ready')});
       } else v.pause();
     });
