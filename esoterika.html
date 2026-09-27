@@ -112,7 +112,7 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 </style>
 <style>.more-link{margin:4px 0 16px}.more-link a{color:var(--gold2);text-decoration:none;font-size:13px;letter-spacing:.06em;border-bottom:1px solid rgba(244,220,165,.35);transition:border-color .4s cubic-bezier(.25,1,.5,1)}.more-link a:hover{border-color:var(--gold2)}</style><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://magicshelest.ru/"},{"@type":"ListItem","position":2,"name":"Эзотерика","item":"https://magicshelest.ru/esoterika.html"}]},{"@type":"CollectionPage","name":"Эзотерика","url":"https://magicshelest.ru/esoterika.html","about":["13 канал","15 канал","16 канал","10 канал","17 канал","Архетипирование","Чистка чакр"],"author":{"@type":"Person","@id":"https://magicshelest.ru/#natalia","name":"Наталья Шелест","jobTitle":"Практикующий маг, эзотерик, астролог","url":"https://magicshelest.ru/","sameAs":["https://t.me/Prognoz_Li_veD"]}}]}</script>
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
+<script>
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();
    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -121,15 +121,26 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 
    ym(112019946, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/112019946" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<meta property="og:url" content="https://magicshelest.ru/esoterika.html">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Magic Shelest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Эзотерика · Magic Shelest">
+<meta name="twitter:description" content="Очищение, восстановление и наполнение ментальных тел.">
+<meta name="twitter:image" content="https://magicshelest.ru/assets/video/posters/purification-poster.webp">
 </head>
 <body>
+<noscript><div><img src="https://mc.yandex.ru/watch/112019946" style="position:absolute;left:-9999px" alt=""></div></noscript>
 <div class="grain"></div>
 <nav class="nav"><div class="nav-in"><a class="brand" href="index.html">Magic <i>Shelest</i></a><a class="back" href="index.html#methods">← Все направления</a></div></nav>
 
 <header class="hero">
-  <img class="hero-img" src="assets/video/posters/purification-poster.webp" alt="Эзотерика">
+  <img class="hero-img" src="assets/video/posters/purification-poster.webp" alt="Эзотерика" width="1280" height="720">
   <div class="wrap"><div class="hero-copy">
     <div class="kicker">Направление практики</div>
     <h1>Эзотерика</h1>
@@ -171,6 +182,7 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 </div></section>
 
 <footer class="footer"><div class="wrap">
+  <a href="/about/">О Наталье</a> · <a href="/consultation/">Консультация</a><br>
   © <span id="y"></span> Наталья Шелест · 18+ · Эзотерические услуги не гарантируют конкретный результат.<br>
   <a href="privacy.html">Конфиденциальность</a>
 </div></footer>
@@ -214,14 +226,15 @@ h2{font-family:var(--serif);font-size:clamp(30px,3.9vw,44px);font-weight:400;lin
 </script>
 <script>
 (function(){
-  function goal(n){ if (typeof ym === 'function') ym(112019946, 'reachGoal', n); }
+  function goal(n,p){ if (typeof ym === 'function') ym(112019946, 'reachGoal', n, p||{}); }
   document.addEventListener('click', function(e){
     var a = e.target.closest('a'); if (!a) return;
-    var h = a.getAttribute('href') || '';
-    if (a.classList.contains('book'))        goal('zapis_knopka');
-    else if (h.indexOf('t.me/natasha') > -1) goal('contact_telegram');
-    else if (h.indexOf('t.me/Prognoz') > -1) goal('contact_channel');
-    else if (h.indexOf('mailto:') === 0)     goal('contact_email');
+    var h = a.getAttribute('href') || '', p = {page: location.pathname};
+    if (a.classList.contains('book'))        { goal('zapis_knopka', p); goal('consultation_click', p); }
+    else if (h.indexOf('t.me/natasha') > -1) { goal('contact_telegram', p); goal('telegram_click', p); }
+    else if (h.indexOf('t.me/Prognoz') > -1) goal('contact_channel', p);
+    else if (h.indexOf('mailto:') === 0)     { goal('contact_email', p); goal('email_click', p); }
+    else if (a.closest('.olist') || a.closest('.req-links')) goal('practice_cta_click', p);
   }, true);
 })();
 </script>

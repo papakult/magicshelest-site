@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
+
+User-agent: Yandex
+Allow: /
+Disallow: /404.html
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&nc /
 
 Sitemap: https://magicshelest.ru/sitemap.xml
